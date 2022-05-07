@@ -31,5 +31,5 @@ Functionalities:
 
 ## Team:
 * [Veeral Agarwal](https://github.com/veeral-agarwal)
-* [Kshitij Mishra](https://github.com/mishrakshitij15)
+* [Kshitij Mishra](https://github.com/kshmis)
 
