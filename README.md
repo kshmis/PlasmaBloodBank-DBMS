@@ -30,6 +30,5 @@ Functionalities:
 14. Logout
 
 ## Team:
-* [Veeral Agarwal](https://github.com/veeral-agarwal)
 * [Kshitij Mishra](https://github.com/kshmis)
 
