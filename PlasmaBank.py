@@ -7,10 +7,8 @@ from datetime import date
 
 
 def UpdateBloodCost():
-	var0 = input("Enter Plasma_bag_number whose cost is to be Updated: ")
-	bloodId = int(var0)
-	var1 = input("Enter updated cost: ")
-	new_cost = int(var1)
+	bloodId = int(input("Enter Plasma_bag_number whose cost is to be Updated: "))
+	new_cost = int(input("Enter updated cost: "))
 	query0 = "Select count(*) AS cnt from BLOOD where Plasma_bag_number = %d" %(bloodId)    
 	query_duty = "UPDATE BLOOD_COST SET cost =  %d where plasma_bag_number = %d" % ( new_cost,bloodId)
 
@@ -34,8 +32,7 @@ def executeQuery(query):
 	con.commit()
 
 def deleteBlood():
-	var0 = input("Enter Plasma bag number to be deleted: ")
-	delete_id = int(var0)
+	delete_id = int(input("Enter Plasma bag number to be deleted: "))
 	query0 = "Select count(*) AS cnt from BLOOD where plasma_bag_number = %d" %(delete_id)
 	query1 = "DELETE FROM BLOOD where plasma_bag_number = %d" % (delete_id)
 
@@ -61,13 +58,10 @@ def addBlood():
 		# Takes emplyee details as input
 		row = {}
 		print("Enter new Plasma details: ")
-		var0 = input("plasma_bag_number: ")
-		row["plasma_bag_number"] = int(var0)
+		row["plasma_bag_number"] = int(input("plasma_bag_number: "))
 		row["blood_type"] = input("Plasma blood_type: ")
-		var1 = input("blood_amount: ")
-		row["blood_amount"] = int(var1)
-		var2 = input("platelets_count (in thousands): ")
-		row["platelets_count"] = float(var2)
+		row["blood_amount"] = int(input("blood_amount: "))
+		row["platelets_count"] = float(input("platelets_count (in thousands): "))
 		query = "INSERT INTO BLOOD(plasma_bag_number,blood_type,blood_amount,platelets_count) VALUES('%d', '%s', '%d', '%0.1f')" %(row["plasma_bag_number"],row["blood_type"], row["blood_amount"], row["platelets_count"])
 		executeQuery(query)
 		print("Inserted Into Database")
@@ -81,10 +75,8 @@ def addPaymentTnx():
 	try:
 		row = {}
 		print("Enter transaction details: ")
-		var0 = input("rec_id: ")
-		row["rec_id"] = int(var0)
-		var1 = input("Payment Amount: ")
-		row["payment_amt"] = int(var1)
+		row["rec_id"] = int(input("rec_id: "))
+		row["payment_amt"] = int(input("Payment Amount: "))
 		timenow = datetime.now()
 		current_time = timenow.strftime("%d/%m/%Y %H:%M:%S")
 		print("Time of Txn =", current_time)
@@ -106,18 +98,15 @@ def addDonorInfo():
 		name = (rawname).split(' ')
 		row["fname"] = name[0]
 		row["lname"] = name[1]
-		var0 = input("Donor_id: ")
-		row["donor_id"] = int(var0)
+		row["donor_id"] = int(input("Donor_id: "))
 		row["blood_type"]=input("Plasma Blood_type: ")
 		dob = (input("DOB (YYYY-MM-DD): ")).split('-')
 		row["dOB"] = dob[0]+'-'+dob[1]+'-'+dob[2]
 		print("Age:", calculateAge(date(int(dob[0]), int(dob[1]), int(dob[2]))), "years")
 		row["age"] = calculateAge(date(int(dob[0]), int(dob[1]), int(dob[2])))
 		row["sex"] = input("Sex: ")
-		var3 = input("phone_no: ")
-		row["phone_no"] = var3
-		var7 = input("Address: ")
-		row["address"] = var7
+		row["phone_no"] = input("phone_no: ")
+		row["address"] = input("Address: ")
 
 		query = "INSERT INTO DONOR_INFO(donor_id,blood_type,phone_no,dOB,age,sex,fname,lname,address) VALUES('%d', '%s', '%s','%s','%d','%s','%s','%s','%s')" %(row["donor_id"], row["blood_type"], row["phone_no"], row["dOB"], row["age"],row["sex"],row["fname"],row["lname"],row["address"])
 		executeQuery(query)
@@ -137,19 +126,16 @@ def addRecipient():
 		name = (rawname).split(' ')
 		row["fname"] = name[0]
 		row["lname"] = name[1]
-		var3 = input("Rec_id: ")
-		row["rec_id"] = int(var3)
+		row["rec_id"] = int(input("Rec_id: "))
 		row["blood_type"]=input("Plasma Blood_type: ")
-		var0 = input("Quantity_needed: ")
-		row["quantity_needed"] = int(var0)
+		row["quantity_needed"] = int(input("Quantity_needed: "))
 		row["date_of_request"] = input("Date of request (YYYY-MM-DD): ")
 		dob = (input("DOB (YYYY-MM-DD): ")).split('-')
 		row["dOB"] = dob[0]+'-'+dob[1]+'-'+dob[2]
 		print("Age:", calculateAge(date(int(dob[0]), int(dob[1]), int(dob[2]))), "years")
 		row["age"] = calculateAge(date(int(dob[0]), int(dob[1]), int(dob[2])))
 		row["sex"] = input("Sex: ")
-		var5 = input("Address: ")
-		row["address"] = var5
+		row["address"] = input("Address: ")
 		query = "INSERT INTO RECIPIENT(rec_id,blood_type,quantity_needed,date_of_request,fname,lname,dOB,sex,age,address) VALUES('%d', '%s', '%d','%s','%s','%s','%s','%s','%d','%s')" %(row["rec_id"], row["blood_type"], row["quantity_needed"], row["date_of_request"],row["fname"],row["lname"],row["dOB"],row["sex"],row["age"],row["address"])
 		executeQuery(query)
 
@@ -165,8 +151,7 @@ def addDonor():
 	try :
 		row={}
 		print("Enter new donation details: ")
-		var0 = input("Donor-id: ")
-		row["donor_id"] = int(var0)
+		row["donor_id"] = int(input("Donor-id: "))
 		row["date_of_donation"] = input("Date of donation (YYYY-MM-DD): ")
 		query = "INSERT INTO DONORS(donor_id,date_of_donation) VALUES('%d', '%s')" %(row["donor_id"],row["date_of_donation"])
 		print(query)
@@ -198,14 +183,11 @@ def hireStaff():
 		row = {}
 		print("Enter new staff member's details: ")
 		row["fname"] = input("Name: ")
-		var0 = input("emp_id: ")
-		row["emp_id"] = int(var0)
+		row["emp_id"] = int(input("emp_id: "))
 		row["supervisor"] = input("supervisor: ")
 		row["address1"] = input("address: ")
-		var1 = input("salary: ")
-		row["salary"] = int(var1)
-		var2 = input("phone_no: ")
-		row["phone_no"] = int(var2)
+		row["salary"] = int(input("salary: "))
+		row["phone_no"] = int(input("phonno:e_ "))
 		query = "INSERT INTO STAFF(emp_id,fname,supervisor, address1,phone_no,salary) VALUES('%d', '%s', '%s', '%s', '%d', '%d')" %(row["emp_id"],row["fname"],row["supervisor"], row["address1"], row["phone_no"], row["salary"])
 		executeQuery(query)
 		print("Inserted Into Database")
@@ -255,8 +237,7 @@ def AddBloodCost():
 	try :
 		row={}
 		print("Enter following details: ")
-		var0 = input("Plasma bag number: ")
-		row["plasma_bag_number"] = int(var0)
+		row["plasma_bag_number"] = int(input("Plasma bag number: "))
 		row["cost"] = int(input("Plasma Cost: "))
 		query = "INSERT INTO BLOOD_COST(plasma_bag_number,cost) VALUES('%d', '%d')" %(row["plasma_bag_number"],row["cost"])
 		executeQuery(query)
